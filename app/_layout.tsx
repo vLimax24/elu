@@ -2,7 +2,7 @@ import "@/global.css";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Theme, ThemeProvider } from "@react-navigation/native";
-import { SplashScreen, Stack, Slot } from "expo-router";
+import { SplashScreen, Slot } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
@@ -10,7 +10,7 @@ import { Platform } from "react-native";
 import { NAV_THEME } from "@/lib/constants";
 import { useColorScheme } from "@/lib/useColorScheme";
 import { PortalHost } from "@rn-primitives/portal";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { View } from "react-native";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ClerkProvider, useAuth, ClerkLoaded } from "@clerk/clerk-expo";
@@ -98,9 +98,11 @@ export default function RootLayout() {
         <ClerkLoaded>
           <GestureHandlerRootView style={{ flex: 1 }}>
             <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-              <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-              <Slot initialRouteName="/welcome" />
-              <PortalHost />
+              <View className="flex-1 bg-backgroundColor">
+                <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+                <Slot initialRouteName="/welcome" />
+                <PortalHost />
+              </View>
             </ThemeProvider>
           </GestureHandlerRootView>
         </ClerkLoaded>
