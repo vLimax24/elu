@@ -1,10 +1,13 @@
 // NotificationSetup.js
 
 import React, { useState, useEffect, useRef } from "react";
-import { Platform, Switch, View, Text } from "react-native";
+import { Platform, View, Text } from "react-native";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
+import { Switch } from "../ui/switch";
+import { Label } from "../ui/label";
+import { i18n } from "@/lib/i18n";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -109,10 +112,19 @@ const NotificationSetup = () => {
 
   return (
     <View className="flex-row items-center justify-between">
-      <Text>Enable Notifications?</Text>
+      <Label
+        nativeID="airplane-mode"
+        onPress={() => {
+          setNotificationsEnabled((prev) => !prev);
+        }}
+        className="text-white"
+      >
+        {i18n.t("profile.notifications")}
+      </Label>
       <Switch
-        value={notificationsEnabled}
-        onValueChange={(value) => setNotificationsEnabled(value)}
+        checked={notificationsEnabled}
+        onCheckedChange={(value) => setNotificationsEnabled(value)}
+        className={`${notificationsEnabled ? "bg-primaryGreen" : "bg-white"}`}
       />
     </View>
   );

@@ -19,13 +19,13 @@ const Navbar = () => {
       tab === "Profile"
         ? "/dashboard/profile"
         : tab === "Home"
-        ? "/dashboard"
-        : "/" + tab
+          ? "/dashboard"
+          : "/" + tab
     );
   };
 
   return (
-    <View className="flex-row items-center justify-around pt-4 pb-6 bg-gray-200">
+    <View className="flex-row items-center justify-around pt-4 pb-6 bg-backgroundColor">
       <TouchableOpacity
         onPress={() => handleTabPress("Home")}
         className="flex items-center justify-center"
