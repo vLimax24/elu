@@ -9,7 +9,7 @@ module.exports = {
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:jsx-a11y/recommended',
-        'plugin:prettier/recommended', // This makes sure Prettier runs as an ESLint rule
+        'plugin:prettier/recommended',
     ],
     plugins: [
         'react',
